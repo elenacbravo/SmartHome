@@ -1,6 +1,5 @@
 variable "vpc_cidr_block" {
   type = string
-  description = "value"
 }
 
 variable "vpc_name" {
