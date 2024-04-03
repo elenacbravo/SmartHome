@@ -25,3 +25,8 @@ variable "private_subnets" {
     availability_zone = string
   }))
 }
+
+variable "allowed_ips" {
+  description = "IP addresses or IP ranges allowed for SSH access"
+  type        = list(string)
+}

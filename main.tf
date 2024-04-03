@@ -10,3 +10,12 @@ module "vpc" {
   private_subnets = var.private_subnets
 
 }
+
+# Security
+module "security" {
+  source = "./modules/security"
+
+  vpc_id = module.vpc.vpc_id
+  allowed_ips = var.allowed_ips
+
+}
