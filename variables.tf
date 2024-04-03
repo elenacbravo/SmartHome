@@ -30,3 +30,15 @@ variable "allowed_ips" {
   description = "IP addresses or IP ranges allowed for SSH access"
   type        = list(string)
 }
+
+variable "table_names" {
+  type = list(string)  
+}
+
+variable "hash_key" {
+  type = string  
+}
+
+variable "hash_key_type" {
+  type = string
+}

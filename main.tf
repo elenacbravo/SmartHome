@@ -19,3 +19,12 @@ module "security" {
   allowed_ips = var.allowed_ips
 
 }
+
+# DynamoDB Databases
+module "databases" {
+  source = "./modules/databases"
+
+  table_names = var.table_names
+  hash_key = var.hash_key
+  hash_key_type = var.hash_key_type
+}

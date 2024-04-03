@@ -20,7 +20,7 @@ This section provides an overview of the modules included in this Terraform conf
 
 
 ### **Networking**
-This module creates a Virtual Private Cloud (VPC) with networking configurations to support the infrastructure's needs.
+Creates a Virtual Private Cloud (VPC) with networking configurations to support the infrastructure's needs.
 - **Fault-Tolerant**: The VPC spans across three availability zones to ensure high availability and fault tolerance.
 
 - **Public and Private Subnets**: Public and Private subnets are provisioned in each availability zone, providing segregation of resources and enhancing security.
@@ -30,7 +30,7 @@ This module creates a Virtual Private Cloud (VPC) with networking configurations
 - **NAT Gateway**: A NAT Gateway is deployed to facilitate secure communication between Public and Private subnets. This enables bidirectional traffic routing, both internally within the VPC and to the internet.
 
 ### **Security**
-This Terraform module sets up a bastion host architecture for secure access to AWS EC2 instances.
+Sets up a bastion host architecture for secure access to AWS EC2 instances.
 
 In the context of this Terraform configuration, the [bastion host](https://aws.amazon.com/blogs/security/how-to-record-ssh-sessions-established-through-a-bastion-host/) is an EC2 instance that serves as a secure entry point into the network. It allows authorized users to SSH into it from their own IP addresses. Once authenticated, users can then SSH from the bastion host to other EC2 instances.
 
@@ -47,6 +47,23 @@ Allows inbound SSH, HTTP, and HTTPS traffic from the bastion host's security gro
 
 - **Private Instances Security Group (private_sg)**:
 Allows inbound SSH, HTTP, and HTTPS traffic from the bastion host's security group. It is intended for EC2 instances not directly accessible from the internet.
+
+### **Databases**
+Creates two DynamoDB tables, specifically designed for managing data related to lighting and heating systems.
+
+Table(s) Configuration:
+- Billing Mode: The tables are configured with the "PAY_PER_REQUEST" billing mode, allowing for flexible and cost-efficient scalability.
+- Hash Key: Each table uses the "id" attribute as the hash key.
+- Attribute Type: The "id" attribute is configured as a numeric attribute ("N") for optimal storage and query performance.
+
+
+#### **Usage: Create an IAM USER**
+We need to create an **IAM user** for these future services (lighting, heating) to interact with the databases so that they can authenticate the requests.
+
+Use the IAM service on the AWS console to create a user that;
+
+- Has policies which allow full access to DynamoDB
+- Once created, give this user CLI access and save your keys somewhere as we will need to inject them later on into some of the services.
 
 ## Usage
 Before proceeding, ensure that you have authenticated your AWS account via the AWS CLI using your access keys.
