@@ -29,6 +29,25 @@ This module creates a Virtual Private Cloud (VPC) with networking configurations
 
 - **NAT Gateway**: A NAT Gateway is deployed to facilitate secure communication between Public and Private subnets. This enables bidirectional traffic routing, both internally within the VPC and to the internet.
 
+### **Security**
+This Terraform module sets up a bastion host architecture for secure access to AWS EC2 instances.
+
+In the context of this Terraform configuration, the [bastion host](https://aws.amazon.com/blogs/security/how-to-record-ssh-sessions-established-through-a-bastion-host/) is an EC2 instance that serves as a secure entry point into the network. It allows authorized users to SSH into it from their own IP addresses. Once authenticated, users can then SSH from the bastion host to other EC2 instances.
+
+Why manually create a Bastion and not use Systems Manager Session Manager or EC2 Instance Connect? 
+- When you manually set up an EC2 instance as a bastion host, you get to customize it exactly the way you want and it allows you to have total control over network settings and how resources are allocated, allowing you to fine-tune performance and manage costs very effectively.
+
+This module consists of three security groups:
+
+- **Bastion Host Security Group (bastion_sg)**:
+Allows inbound SSH (port 22) traffic from specified IP addresses and permits outbound HTTP (port 80) and HTTPS (port 443) traffic to the internet.
+
+- **Public Instances Security Group (public_sg)**:
+Allows inbound SSH, HTTP, and HTTPS traffic from the bastion host's security group. It is designed for EC2 instances accessible from the internet.
+
+- **Private Instances Security Group (private_sg)**:
+Allows inbound SSH, HTTP, and HTTPS traffic from the bastion host's security group. It is intended for EC2 instances not directly accessible from the internet.
+
 ## Usage
 Before proceeding, ensure that you have authenticated your AWS account via the AWS CLI using your access keys.
 
