@@ -29,10 +29,10 @@ private_subnets = [{
 }]
 
 # Security
-allowed_ips = ["X.X.X.X/32"]  # Replace it with your IP address or IP ranges allowed for SSH access
+allowed_ips = ["X.X.X.X/32"] # Replace it with your IP address or IP ranges allowed for SSH access
 
 # DynamoDB tables (databases)
-table_names = ["lighting", "heating"]
-hash_key = "id"
+table_names   = ["lighting", "heating"]
+hash_key      = "id"
 hash_key_type = "N"
 

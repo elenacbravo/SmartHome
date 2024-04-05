@@ -1,5 +1,5 @@
 variable "vpc_cidr_block" {
-  type = string
+  type        = string
   description = "value"
 }
 
@@ -13,8 +13,8 @@ variable "enable_dns_hostnames" {
 
 variable "public_subnets" {
   type = list(object({
-    cidr_range        = string
-    availability_zone = string
+    cidr_range              = string
+    availability_zone       = string
     map_public_ip_on_launch = bool
   }))
 }
@@ -32,13 +32,14 @@ variable "allowed_ips" {
 }
 
 variable "table_names" {
-  type = list(string)  
+  type = list(string)
 }
 
 variable "hash_key" {
-  type = string  
+  type = string
 }
 
 variable "hash_key_type" {
   type = string
 }
+
