@@ -59,3 +59,19 @@ module "load-balancers" {
   status_service_instance_id   = module.app-servers.status_id
   auth_service_instance_id     = module.app-servers.auth_id
 }
+
+# Autoscaling
+module "autoscaling" {
+  source             = "./modules/autoscaling"
+
+  instance_type      = var.instance_type
+  latest_ubuntu      = data.aws_ami.latest_ubuntu.id
+  security_group_id  = module.security.public_sg_id
+
+  public_subnet_ids  = module.vpc.public_subnet_ids
+  target_group       = module.load-balancers.public_target_group_arn
+
+  desired_capacity   = var.desired_capacity
+  max_size           = var.max_size
+  min_size           = var.min_size
+}

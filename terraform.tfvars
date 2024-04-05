@@ -29,10 +29,17 @@ private_subnets = [{
 }]
 
 # Security
-allowed_ips = ["140.228.44.109/32"] # Replace it with your IP address or IP ranges allowed for SSH access
+allowed_ips = ["X.X.X.X/32"] # Replace it with your IP address or IP ranges allowed for SSH access
 
 # DynamoDB tables (databases)
 table_names   = ["lighting", "heating"]
 hash_key      = "id"
 hash_key_type = "N"
+
+# Autoscaling
+instance_type = "t2.micro"
+
+desired_capacity = 3
+max_size = 3
+min_size = 1
 

@@ -81,7 +81,7 @@ resource "aws_lb_target_group_attachment" "public_services" {
 resource "aws_lb_listener_rule" "public_services" {
   for_each = local.public_services
 
-  listener_arn = aws_lb_listener.public_services[each.key].arn  # Use each.key to access specific instances
+  listener_arn = aws_lb_listener.public_services[each.key].arn 
 
   action {
     type             = "forward"
@@ -95,7 +95,6 @@ resource "aws_lb_listener_rule" "public_services" {
   }
 }
 
-
 # Private Load Balancer
 resource "aws_lb" "private_services" {
   name               = "auth-lb"
@@ -108,8 +107,6 @@ resource "aws_lb" "private_services" {
     Name = "auth-lb"
   }
 }
-
-
 
 resource "aws_lb_target_group" "private_services" {
   for_each = local.private_services

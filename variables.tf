@@ -43,3 +43,20 @@ variable "hash_key_type" {
   type = string
 }
 
+variable "instance_type" {
+  type        = string
+  description = "type of instance"
+}
+
+variable "desired_capacity" {
+  type        = string
+}
+
+variable "max_size" {
+  type        = string
+}
+
+variable "min_size" {
+  type        = string
+}
+
