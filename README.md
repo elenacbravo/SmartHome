@@ -65,6 +65,12 @@ Use the IAM service on the AWS console to create a user that;
 - Has policies which allow full access to DynamoDB
 - Once created, give this user CLI access and save your keys somewhere as we will need to inject them later on into some of the services.
 
+### **App-servers**
+This module sets up five EC2 servers for each service, including a bastion host. They all have their specific and adequate security groups and subnets ids depending on their privacy settings.
+
+In order to ssh into the bastion, remember to create a key pair in the aws console with the name of **smarthome-apps** and apply the ssh command in the same directory that your .pem key file is in. 
+
+![Key-pair: ](media/key-pair.png)
 
 ## Usage
 Before proceeding, ensure that you have authenticated your AWS account via the AWS CLI using your access keys.
