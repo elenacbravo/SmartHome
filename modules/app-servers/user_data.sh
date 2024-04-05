@@ -1,7 +1,11 @@
 #!/bin/bash
 
-rm /home/ubuntu/SmartHome/.env.local 
-touch /home/ubuntu/SmartHome/.env.local
-echo "LIGHTING_SERVICE=http://${load_balancer_address}">> /home/ubuntu/SmartHome/.env.local
-echo "HEATING_SERVICE=http://${load_balancer_address}">> /home/ubuntu/SmartHome/.env.local
-echo "AUTH_SERVICE=http://${load_balancer_address}:3000">> /home/ubuntu/SmartHome/.env.local
+# Assigning the load_balancer_address to a variable
+load_balancer_address="${load_balancer_address}"
+
+# Generating the environment file
+cat <<EOF > /home/ubuntu/SmartHome/.env.local
+LIGHTING_SERVICE=http://$load_balancer_address
+HEATING_SERVICE=http://$load_balancer_address
+AUTH_SERVICE=http://$load_balancer_address:3000
+EOF

@@ -33,8 +33,8 @@ module "databases" {
 module "app-servers" {
   source = "./modules/app-servers"
 
-  public_subnet_id  = module.vpc.public_subnet_ids
-  private_subnet_id = module.vpc.private_subnet_ids
+  public_subnet_id  = module.vpc.public_subnet_ids[0]
+  private_subnet_id = module.vpc.private_subnet_ids[0]
 
   bastion_sg = [module.security.bastion_sg_id]
   public_sg  = [module.security.public_sg_id]
@@ -47,12 +47,15 @@ module "app-servers" {
 module "load-balancers" {
   source = "./modules/load-balancers"
 
-  vpc_id = module.vpc.vpc_id
-  public_subnets_ids = module.vpc.public_subnet_ids
-  
-  security_groups = [module.security.public_sg_id]
+  vpc_id              = module.vpc.vpc_id
+  public_subnets_ids  = module.vpc.public_subnet_ids
+  private_subnets_ids = module.vpc.private_subnet_ids
 
-  lighting_service_instance_id = module.app-servers.lighting_id 
-  heating_service_instance_id =  module.app-servers.heating_id
-  status_service_instance_id = module.app-servers.status_id
+  security_groups         = [module.security.public_sg_id]
+  private_security_groups = [module.security.private_sg_id]
+
+  lighting_service_instance_id = module.app-servers.lighting_id
+  heating_service_instance_id  = module.app-servers.heating_id
+  status_service_instance_id   = module.app-servers.status_id
+  auth_service_instance_id     = module.app-servers.auth_id
 }

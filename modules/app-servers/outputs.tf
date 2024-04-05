@@ -13,3 +13,8 @@ output "heating_id" {
 output "status_id" {
   value = aws_instance.status.id
 }
+
+output "auth_id" {
+  value = aws_instance.auth.id
+}
+
