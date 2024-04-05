@@ -17,3 +17,7 @@ variable "public_sg" {
 variable "private_sg" {
   type = list(string)
 }
+
+variable "load_balancer_address" {
+  type = string
+}

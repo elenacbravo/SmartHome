@@ -37,9 +37,7 @@ resource "aws_instance" "heating" {
 
 locals {
   vars = {
-    heating  = aws_instance.heating.private_ip
-    lighting = aws_instance.lighting.private_ip
-    auth     = aws_instance.auth.private_ip
+    load_balancer_address = var.load_balancer_address
   }
 }
 

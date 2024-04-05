@@ -39,4 +39,19 @@ module "app-servers" {
   bastion_sg = [module.security.bastion_sg_id]
   public_sg  = [module.security.public_sg_id]
   private_sg = [module.security.private_sg_id]
+
+  load_balancer_address = module.load-balancers.load_balancer_address
+}
+
+# Load Balancers
+module "load-balancers" {
+  source = "./modules/load-balancers"
+
+  vpc_id = module.vpc.vpc_id
+  public_subnets_ids = module.vpc.public_subnet_ids
+  
+  security_groups = [module.security.public_sg_id]
+
+  lighting_service_instance_id = module.app-servers.lighting_id 
+  heating_service_instance_id =  module.app-servers.heating_id
 }
