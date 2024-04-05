@@ -56,8 +56,6 @@ Table(s) Configuration:
 - Hash Key: Each table uses the "id" attribute as the hash key.
 - Attribute Type: The "id" attribute is configured as a numeric attribute ("N") for optimal storage and query performance.
 
-### **App-servers**
-This module sets up five EC2 servers for each service, including a bastion host. They all have their specific and adequate security groups and subnets ids depending on their privacy settings.
 
 #### **Usage: Create an IAM USER**
 We need to create an **IAM user** for these future services (lighting, heating) to interact with the databases so that they can authenticate the requests.
@@ -66,6 +64,9 @@ Use the IAM service on the AWS console to create a user that;
 
 - Has policies which allow full access to DynamoDB
 - Once created, give this user CLI access and save your keys somewhere as we will need to inject them later on into some of the services.
+
+### **App-servers**
+This module sets up five EC2 servers for each service, including a bastion host. They all have their specific and adequate security groups and subnets ids depending on their privacy settings.
 
 ## Usage
 Before proceeding, ensure that you have authenticated your AWS account via the AWS CLI using your access keys.
