@@ -4,7 +4,7 @@ resource "aws_instance" "bastion" {
   instance_type          = "t2.micro"
   subnet_id              = var.public_subnet_id
   vpc_security_group_ids = var.bastion_sg
-  key_name = "smarthome-apps"
+  key_name               = "smarthome-apps"
 
   tags = {
     Name = "bastion-host-smarthome"
@@ -35,6 +35,13 @@ resource "aws_instance" "heating" {
   }
 }
 
+locals {
+  vars = {
+    heating  = aws_instance.heating.private_ip
+    lighting = aws_instance.lighting.private_ip
+    auth     = aws_instance.auth.private_ip
+  }
+}
 
 # Status
 resource "aws_instance" "status" {
@@ -46,6 +53,10 @@ resource "aws_instance" "status" {
   tags = {
     Name = "status-app-server"
   }
+
+  user_data = base64decode(templatefile("${path.module}/user_data.sh", local.vars))
+
+  depends_on = [aws_instance.heating, aws_instance.auth, aws_instance.lighting]
 }
 
 # Auth
