@@ -18,3 +18,6 @@ variable "lighting_service_instance_id" {
   type = string
 }
 
+variable "status_service_instance_id" {
+  type = string
+}

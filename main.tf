@@ -54,4 +54,5 @@ module "load-balancers" {
 
   lighting_service_instance_id = module.app-servers.lighting_id 
   heating_service_instance_id =  module.app-servers.heating_id
+  status_service_instance_id = module.app-servers.status_id
 }
