@@ -65,8 +65,6 @@ Use the IAM service on the AWS console to create a user that;
 - Has policies which allow full access to DynamoDB
 - Once created, give this user CLI access and save your keys somewhere as we will need to inject them later on into some of the services.
 
-### **App-servers**
-This module sets up five EC2 servers for each service, including a bastion host. They all have their specific and adequate security groups and subnets ids depending on their privacy settings.
 
 ## Usage
 Before proceeding, ensure that you have authenticated your AWS account via the AWS CLI using your access keys.

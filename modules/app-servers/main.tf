@@ -4,6 +4,7 @@ resource "aws_instance" "bastion" {
   instance_type          = "t2.micro"
   subnet_id              = var.public_subnet_id
   vpc_security_group_ids = var.bastion_sg
+  key_name = "smarthome-apps"
 
   tags = {
     Name = "bastion-host-smarthome"
