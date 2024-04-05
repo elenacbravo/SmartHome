@@ -56,6 +56,8 @@ Table(s) Configuration:
 - Hash Key: Each table uses the "id" attribute as the hash key.
 - Attribute Type: The "id" attribute is configured as a numeric attribute ("N") for optimal storage and query performance.
 
+### **App-servers**
+This module sets up five EC2 servers for each service, including a bastion host. They all have their specific and adequate security groups and subnets ids depending on their privacy settings.
 
 #### **Usage: Create an IAM USER**
 We need to create an **IAM user** for these future services (lighting, heating) to interact with the databases so that they can authenticate the requests.
