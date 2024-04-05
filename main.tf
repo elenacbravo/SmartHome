@@ -33,8 +33,8 @@ module "databases" {
 module "app-servers" {
   source = "./modules/app-servers"
 
-  public_subnet_id  = module.vpc.public_subnet_ids[0]
-  private_subnet_id = module.vpc.private_subnet_ids[0]
+  public_subnet_id  = module.vpc.public_subnet_ids
+  private_subnet_id = module.vpc.private_subnet_ids
 
   bastion_sg = [module.security.bastion_sg_id]
   public_sg  = [module.security.public_sg_id]
