@@ -32,7 +32,7 @@ resource "aws_lb_target_group" "heating" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "heating_ga" {
+resource "aws_lb_target_group_attachment" "heating" {
   target_group_arn = aws_lb_target_group.heating.arn
   target_id        = var.heating_service_instance_id
   port             = 3000
@@ -65,7 +65,7 @@ resource "aws_lb_target_group" "lighting" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "lighting_ga" {
+resource "aws_lb_target_group_attachment" "lighting" {
   target_group_arn = aws_lb_target_group.lighting.arn
   target_id        = var.lighting_service_instance_id
   port             = 3000
