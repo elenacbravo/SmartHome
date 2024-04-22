@@ -2,7 +2,7 @@
 In this project, I designed and implemented a microservices architecture, utilizing Terraform to provision and manage the AWS resources. 
 Each component of the architecture is modularized using Terraform modules, ensuring reusability, maintainability and scalability.
 
-SmartHome, was developed as part of my Cloud Engineering bootcamp at Northcoders. The goal of this project was to create a scalable and resilient microservices network within an AWS infrastructure, using Infrastructure as Code (IaC) with Terraform. 
+The goal of this project was to create a scalable and resilient microservices network within an AWS infrastructure, using Infrastructure as Code (IaC) with Terraform. 
 
 
 ## Structure: Modules
